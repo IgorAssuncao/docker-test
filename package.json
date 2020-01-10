@@ -1,0 +1,21 @@
+{
+  "name": "docker-test",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.js",
+    "build": "babel src -d dist"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/node": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "nodemon": "^2.0.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
