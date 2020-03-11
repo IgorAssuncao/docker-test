@@ -1,23 +1,20 @@
-FROM node:12 as builder
+FROM node:12
 
 WORKDIR /var/app
+
+# RUN addgroup -S app && adduser appUser app
+RUN groupadd app && useradd appUser && usermod -aG app appUser
 
 COPY package.json yarn.lock ./
 RUN yarn install
 COPY . .
 
-RUN yarn build 
+RUN yarn build
 
-FROM node:12-alpine
-
-WORKDIR /var/app
-
-RUN addgroup -S app && adduser -S appUser -G app
-
-COPY --from=builder --chown=appUser:app /var/app/package.json /var/app/yarn.lock ./
-RUN yarn install
-COPY --from=builder --chown=appUser:app /var/app/dist ./dist
+RUN chown -R appUser:app ./
 
 USER appUser
 
+EXPOSE 3000
 
+CMD yarn start

@@ -4,6 +4,7 @@ services:
   api:
     build:
       context: './'
+      dockerfile: 'ms.Dockerfile'
     ports:
       - '3000:3000'
     networks:
